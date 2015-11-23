@@ -1,0 +1,53 @@
+* RPI SBCL
+  Dynamic library based on [[https://github.com/Pieter-Jan/PJ_RPI/][PJ_RPI low level C codes.]]
+
+** Compiling
+   It comes precompiled for RPi, only recompile if you are going to
+   use a RPi 2.
+
+   Clone [[https://github.com/Pieter-Jan/PJ_RPI/][PJ_RPI repo.]]
+   #+BEGIN_SRC bash
+   git clone https://github.com/Pieter-Jan/PJ_RPI.git
+   #+END_SRC
+
+   Find line 21-22 on file /PJ_RPI.h/ from =PJ_RPI= repo and
+   uncomment your RPI:
+   #+BEGIN_SRC C
+   //#define RPI
+   #define RPI2
+   #+END_SRC
+
+   Modify line 1 from this repo to match your =PJ_RPI= location
+   #+BEGIN_SRC C
+   #include "../PJ_RPI/PJ_RPI.c"
+   #+END_SRC
+
+   Compile the dynamic library:
+   #+BEGIN_SRC bash
+   cc -c rpi.c && ld -shared -o rpi.so rpi.o
+   #+END_SRC
+
+   Then compile
+
+** Install
+   Load libraries on your Lisp code, changing to your own path ofc:
+   #+BEGIN_SRC common-lisp
+   (load-shared-object "/path/to/repo/rpi-sbcl/rpi.so")
+   (load "/path/to/repo/rpi-sbcl/rpi.fasl")
+   #+END_SRC
+
+** Basics
+   It uses BCM processor pin numbering.
+
+   For now, functions available are:
+
+   #+BEGIN_SRC common-lisp
+   (rpi::set-output port)
+   (rpi::set-input port)
+   (rpi::set-gpio-low port)
+   (rpi::set-gpio-high port)
+   (rpi::set-gpio port value)
+   #+END_SRC
+
+   Note: At the very low level(C code) the function  =(rpi::set-gpio
+   port value)= uses the other two functions (rpi::set-gpio-low port)
