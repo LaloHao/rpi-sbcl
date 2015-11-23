@@ -3,7 +3,7 @@
 
 (defvar pines-del-display '(4 17 27 22 18 23 24))
 (mapc 'rpi::set-output pines-del-display)
-(mapc 'rpi::set-gpio-low. pines-del-display)
+(mapc 'rpi::set-gpio-low pines-del-display)
 
 (defvar segmentos-del-display '((a . 4)
                            (b . 17)
