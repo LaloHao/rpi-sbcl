@@ -17,7 +17,7 @@
    #define RPI2
    #+END_SRC
 
-   Modify line 1 from this repo to match your =PJ_RPI= location
+   Modify /rpi.c/ line 1 from this repo to match your =PJ_RPI= location
    #+BEGIN_SRC C
    #include "../PJ_RPI/PJ_RPI.c"
    #+END_SRC
@@ -27,7 +27,10 @@
    cc -c rpi.c && ld -shared -o rpi.so rpi.o
    #+END_SRC
 
-   Then compile
+   Then compile Lisp library with:
+   #+BEGIN_SRC common-lisp
+   (compile-file "rpi.lisp")
+   #+END_SRC
 
 ** Install
    Load libraries on your Lisp code, changing to your own path ofc:
