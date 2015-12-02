@@ -31,3 +31,7 @@ void set_gpio_low(int port){
 void set_gpio_high(int port){
     set_gpio(port, 1);
 }
+
+int read_gpio(int port){
+    return GPIO_READ(port);
+}

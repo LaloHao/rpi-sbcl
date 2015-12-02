@@ -31,3 +31,9 @@
   (port int))
 (defun set-gpio-high (port)
   (set_gpio_high port))
+
+(declaim (inline read_gpio))
+(define-alien-routine read_gpio int
+  (port int))
+(defun read-gpio (port)
+  (ash (read_gpio port) (- port)))

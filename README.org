@@ -50,6 +50,7 @@
    (rpi::set-gpio-low port)
    (rpi::set-gpio-high port)
    (rpi::set-gpio port value)
+   (rpi::read-gpio port)
    #+END_SRC
 
    Note: At the very low level(C code) the function  =(rpi::set-gpio
